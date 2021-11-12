@@ -5,10 +5,10 @@ const Total = (props)=>{
     return (
         <View style={styles.container}>
             <Text>
-                Общий налет:
+                {props.total_name}
             </Text>
             <Text>
-                500 ч. 30 м.:
+            {props.total_time} 
             </Text>
         </View>
     ) 
@@ -16,14 +16,14 @@ const Total = (props)=>{
 
 const styles = StyleSheet.create({
     container: {
-      
-      backgroundColor: '#fff',
+      backgroundColor: '#ff0',
       alignItems: 'center',
       justifyContent: 'center',
-      borderWidth: 5,
-      height:100,
-      width: '80%',
+      borderWidth: 3,
+      height:80,
+      width: '95%',
       borderRadius: 20,
+      
     },
   });
 
