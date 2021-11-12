@@ -16,13 +16,13 @@ const Total = (props)=>{
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#ff0',
+      backgroundColor: '#AAFFFF',
       alignItems: 'center',
       justifyContent: 'center',
       borderWidth: 3,
       height:80,
-      width: '95%',
       borderRadius: 20,
+      margin:3
       
     },
   });

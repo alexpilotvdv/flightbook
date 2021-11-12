@@ -67,7 +67,7 @@ const ListTotal = (props)=>{
         data={data}
         renderItem={renderItem}
         keyExtractor={item => item.id}
-        style={styles.container}
+    
       />
         
      

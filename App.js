@@ -1,16 +1,35 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import Total from './src/components/Total'
 import ListTotal from './src/components/ListTotal';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function App() {
   
   return (
     <View style={styles.container}>
-     <Total total_name='Общий налет:' total_time = '500 ч. 33 м.'/>
+      <View style={styles.total}>
+        
+      <Total total_name='Общий налет:' total_time = '500 ч. 33 м.'/>
+      </View>
+     
      <View style={styles.list}>
+     <Text style={{marginLeft:10, 
+      fontStyle:'italic',
+      fontWeight:'bold',
+      fontSize:20}}>Налет по типам:</Text>
      <ListTotal />
+     </View>
+     <View style={styles.knopki}>
+     <Ionicons name='settings' size={65} color='#AAFFFF' />
+     <Ionicons name='list' size={70} color='#AAFFFF' />
+     
+     <TouchableOpacity
+        onPress={() => alert('Hello, world!')}
+        >
+        <Ionicons name='add-circle' size={70} color='#AAFFFF' />
+      </TouchableOpacity>
      </View>
      
     </View>
@@ -19,18 +38,31 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    
-    backgroundColor: '#f0f',
-    alignItems: 'center',
+    flex:1,
+    flexDirection:'column',
+    backgroundColor: '#fff',
+    alignItems: 'stretch',
     justifyContent: 'flex-start',
     marginTop:50
   },
+  total:{
+    flex: 1,
+    alignItems:'stretch',
+    marginTop:20,
+    backgroundColor:'gray'
+    
+  },
   list:{
-    width: '100%',
-    height:'70%',
-    alignItems: 'center',
-    marginTop:30,
-    justifyContent: 'center',
-    marginLeft:10
+    flex: 4,
+    alignItems:'stretch',
+    backgroundColor:'gray'
+  },
+  knopki:{
+    flex:1,
+    justifyContent:'space-between',
+    flexDirection:'row',
+    alignItems:'center',
+    padding:5,
+    backgroundColor:'gray'
   }
 });
