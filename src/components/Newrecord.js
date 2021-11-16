@@ -2,32 +2,26 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity,Button } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Ionicons } from '@expo/vector-icons';
+import {StoreContext} from '../../statecontext'
 
-export default function App() {
-    const [date, setDate] = useState(new Date(1598051730000));
-    const [mode, setMode] = useState('date');
-    const [show, setShow] = useState(false);
-
+export default Newrecord =(props)=> {
+   console.log('props',props)
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         // setShow(Platform.OS === 'ios');
-        setDate(currentDate);
-    };
-    const showDatepicker = () => {
-        setShow(true);
-        setMode('date');
-    };
+        props.setDate(currentDate);
+    }
     return (
         <View style={styles.container}>
             <View>
-                <Button onPress={showDatepicker} title="Выберите дату полета" />
+                <Text> {props.datatxt} </Text>
+                <Button onPress={()=>props.openDataTrue()} title="Выберите дату полета" />
             </View>
-            {show && (
+            {props.show && (
                 <DateTimePicker
                     testID="dateTimePicker"
-                    value={date}
-                    mode={mode}
+                    value={props.data}
+                    mode={'data'}
                     is24Hour={true}
                     display="default"
                     onChange={onChange}
@@ -36,7 +30,11 @@ export default function App() {
 
         </View>
     );
+
+    
+   
 }
+Newrecord.contextType=StoreContext
 
 const styles = StyleSheet.create({
     container: {

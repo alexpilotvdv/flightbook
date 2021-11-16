@@ -2,22 +2,30 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Main from './Main'
-import Newrecords from './src/components/Newrecord'
+import addprovider from './src/containers/addprovider'
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export default class App extends React.Component {
+  render() {
+  
+    return (
+      
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={Main}
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Main}
-          options={{ title: 'Welcome' }}
-        />
-        <Stack.Screen name="Newrecords" component={Newrecords} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+            />
+            <Stack.Screen name="Newrecords"
+              component={addprovider}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+   
+
+    )
+  }
+
 }
