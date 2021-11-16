@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity,Button } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {StoreContext} from '../../statecontext'
@@ -34,7 +34,7 @@ export default Newrecord =(props)=> {
     
    
 }
-Newrecord.contextType=StoreContext
+
 
 const styles = StyleSheet.create({
     container: {

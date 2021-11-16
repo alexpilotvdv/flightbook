@@ -2,18 +2,6 @@ import React from 'react';
 import Newrecord from '../components/Newrecord';
 import { connect } from "react-redux";
 
-// const newrecordTest = (props)=>{
-  
-//     let currentDate = new Date()
-//     return (
-//        <Newrecord datatxt={currentDate.toLocaleString()} 
-//        show = {true} 
-//        data = {currentDate}
-//        />
-//     )
-// }
-
-
 const mapStateToProps=(state)=>{
   //  console.log('mapst',state)
     return  ({
