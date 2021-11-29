@@ -5,9 +5,9 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import {StoreContext} from '../../statecontext'
 
 export default Newrecord =(props)=> {
-   console.log('props',props)
+   //console.log('props',props)
     const onChange = (event, selectedDate) => {
-        const currentDate = selectedDate || date;
+        const currentDate = selectedDate || props.data;
         // setShow(Platform.OS === 'ios');
         props.setDate(currentDate);
     }
