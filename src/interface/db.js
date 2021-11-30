@@ -4,14 +4,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class Mydb {
     constructor() {
+      this.db = SQLite.openDatabase('db.testDb')
         //надо сделать так, чтобы проводилась проверка
         //была ли уже инициализация
-        this.db = SQLite.openDatabase('db.testDb')
-        this.db.transaction(tx => {
-            tx.executeSql(
-                'CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, completed INT)'
-            )
-        })
+        var status = this.readFile('status')
+        if(status!=='initok'){
+          //сделать инициализацию базы
+
+        }
+       
         // this.db.transaction(tx => {
         //     tx.executeSql('SELECT * FROM items', null, // passing sql query and parameters:null
         //         // success callback which sends two things Transaction object and ResultSet Object
@@ -22,7 +23,22 @@ class Mydb {
         // }) // end transaction
 
     }
-
+createInit = ()=>{
+  const sql
+  sql = `CREATE TABLE IF NOT EXISTS records 
+  (id_records INTEGER PRIMARY KEY AUTOINCREMENT, data INT,
+     day INT, plane INT, status INT, meteo INT, other INT, minuts INT)`
+return new Promise((resolve,reject)=>{
+  this.db.transaction(tx => {
+    tx.executeSql(
+      sql,
+      null,
+      (txobj,rez)=>resolve(),
+      (txobj,err)=>reject(err)
+    )
+  })
+})
+}
     //тест записи файла
     recordFile = async (key,fileContents) => {
         
