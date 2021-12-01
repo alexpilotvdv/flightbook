@@ -11,8 +11,9 @@ const addReducer=(state=init, action)=>{
     let currentDate = new Date()  
 switch(action.type){
     case SHOW_KALENDAR:{
-        db.recordFile('status','init')
-        .then(resolve=>console.log('write ok'), reject=>console.log('error', reject))
+       
+        db.addTest(`SELECT value_day FROM day`).then(res=>console.log('res: ',res),
+        err=>console.log('err: ',err))
        return {...state,show:true,data:currentDate}
     }
     case SET_DATA:{
