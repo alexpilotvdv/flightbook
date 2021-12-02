@@ -17,6 +17,7 @@ const addReducer = (state = init, action) => {
             return { ...state, show: true, data: currentDate }
         }
         case 'SET_TYPE':{
+            console.log('sel:',action.selected)
             return{...state, selectedType: action.selected}
         }
         case SET_DATA: {

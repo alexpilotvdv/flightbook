@@ -1,43 +1,49 @@
 
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button, Picker } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import {Picker} from '@react-native-picker/picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StoreContext } from '../../statecontext'
 
-export default Newrecord = (props) => {
+export default class Newrecord extends Component  {
     //console.log('props',props)
-    const onChange = (event, selectedDate) => {
+    onChange = (event, selectedDate) => {
         const currentDate = selectedDate || props.data;
         // setShow(Platform.OS === 'ios');
         props.setDate(currentDate);
     }
-    return (
-        <View style={styles.container}>
-            <View>
-                <Text> {props.datatxt} </Text>
-                <Button onPress={() => props.openDataTrue()} title="Выберите дату полета" />
+    render(){
+       // console.log(this.props)
+        return (
+            <View style={styles.container}>
+                <View>
+                    <Text> {this.props.datatxt} </Text>
+                    <Button onPress={() => this.props.openDataTrue()} title="Выберите дату полета" />
+                </View>
+                {this.props.show && (
+                    <DateTimePicker
+                        testID="dateTimePicker"
+                        value={this.props.data}
+                        mode={'data'}
+                        is24Hour={true}
+                        display="default"
+                        onChange={this.onChange}
+                    />
+                )}
+                <Text>ЛА</Text>
+                <Picker
+                    selectedValue={this.props.selectedType}
+                    style={{ height: 50, width: 150 }}
+                    onValueChange={(itemValue, itemIndex) => this.props.setType(itemValue)}
+                >
+                    <Picker.Item label="1" value="java1" />
+                    <Picker.Item label="2" value="js2" />
+                    <Picker.Item label="3" value="js3" />
+                </Picker>
             </View>
-            {props.show && (
-                <DateTimePicker
-                    testID="dateTimePicker"
-                    value={props.data}
-                    mode={'data'}
-                    is24Hour={true}
-                    display="default"
-                    onChange={onChange}
-                />
-            )}
-            <Text>ЛА</Text>
-            <Picker
-                selectedValue={props.selectedType}
-                style={{ height: 50, width: 150 }}
-                onValueChange={(itemValue, itemIndex) => props.setType(itemValue)}
-            >
-                <Picker.Item label="Java" value="java" />
-                <Picker.Item label="JavaScript" value="js" />
-            </Picker>
-        </View>
-    );
+        );
+    }
+    
 
 
 

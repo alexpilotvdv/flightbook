@@ -3,12 +3,12 @@ import Newrecord from '../components/Newrecord';
 import { connect } from "react-redux";
 
 const mapStateToProps=(state)=>{
-  //  console.log('mapst',state)
+  console.log(state)
     return  ({
     show: state.newrecord.show,
     data: state.newrecord.data,
     datatxt: state.newrecord.data.toLocaleString(),
-    selectedType: state.selectedType 
+    selectedType: state.newrecord.selectedType 
  })
 }
    
