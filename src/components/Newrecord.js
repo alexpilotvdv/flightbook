@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import {Picker} from '@react-native-picker/picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StoreContext } from '../../statecontext'
+import SelectItems from './SelectItems';
 
 export default class Newrecord extends Component  {
     //console.log('props',props)
@@ -15,7 +16,7 @@ export default class Newrecord extends Component  {
     componentDidMount = () => {
         this.props.init()
         this.returnPickerItemArray()
-        this.props.init()
+       // this.props.init()
     }
     returnPickerItemArray = () => {
        let arr = this.pickItemArr = this.props.typeDay.map((el)=>{
@@ -42,16 +43,10 @@ export default class Newrecord extends Component  {
                     />
                 )}
                 <Text>ЛА</Text>
-                <Picker
-                    selectedValue={this.props.selectedType}
-                    style={{ height: 50, width: 150 }}
-                    onValueChange={(itemValue, itemIndex) => this.props.setType(itemValue)}
-                >
-                    {/*<Picker.Item label="1" value="java1" />*/}
-                    {/*<Picker.Item label="2" value="js2" />*/}
-                    {/*<Picker.Item label="3" value="js3" />*/}
-                    {this.returnPickerItemArray()}
-                </Picker>
+                <SelectItems nameList = 'Время суток'
+                elementsList = {this.props.typeDay} 
+                selected = {this.props.selectedType}
+                setType = {this.props.setType}/>
             </View>
         );
     }
