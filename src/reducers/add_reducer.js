@@ -6,15 +6,20 @@ let currentDate = new Date()
 let init = {
     data: currentDate,
     show: false,
-    selectedType: ''
+    selectedType: '',
+    typeDay:[]
 }
+
 const addReducer = (state = init, action) => {
     let currentDate = new Date()
     switch (action.type) {
         case SHOW_KALENDAR: {
-            db.addTest(`SELECT value_day FROM day`).then(res => console.log('res: ', res),
-                err => console.log('err: ', err))
+            // db.addTest(`SELECT value_day FROM day`).then(res => console.log('res: ', res),
+            //     err => console.log('err: ', err))
             return { ...state, show: true, data: currentDate }
+        }
+        case 'INIT': {
+            return { ...state, typeDay:action.days }
         }
         case 'SET_TYPE':{
             console.log('sel:',action.selected)
