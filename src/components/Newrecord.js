@@ -7,7 +7,7 @@ import { StoreContext } from '../../statecontext'
 import SelectItems from './SelectItems';
 
 export default class Newrecord extends Component  {
-    //console.log('props',props)
+    
     onChange = (event, selectedDate) => {
         const currentDate = selectedDate || props.data;
         // setShow(Platform.OS === 'ios');
@@ -25,6 +25,7 @@ export default class Newrecord extends Component  {
      return arr
     }
     render(){
+       console.log('props',this.props)
        console.log(this.pickItemArr)
         return (
             <View style={styles.container}>
@@ -47,7 +48,12 @@ export default class Newrecord extends Component  {
                 elementsList = {this.props.typeDay} 
                 selected = {this.props.selectedType}
                 setType = {this.props.setType}/>
+                {/* <SelectItems nameList = 'Летательный аппарат'
+                elementsList = {this.props.planes} 
+                selected = {this.props.selectedPlane}
+                setType = {this.props.setPlane}/> */}
             </View>
+            
         );
     }
     

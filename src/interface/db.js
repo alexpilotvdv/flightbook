@@ -20,42 +20,42 @@ class Mydb {
               day INT, plane INT, status INT, 
               meteo INT, other INT, minuts INT)`)
             .then(
-              this.createInit(`CREATE TABLE IF NOT EXISTS day (id_day INTEGER PRIMARY 
-                  KEY AUTOINCREMENT, value_day TEXT)`)
+              this.createInit(`CREATE TABLE IF NOT EXISTS day (id INTEGER PRIMARY 
+                  KEY AUTOINCREMENT, value TEXT)`)
             )
             .then(
-              this.createInit(`CREATE TABLE IF NOT EXISTS plane (id_plane INTEGER PRIMARY 
-                  KEY AUTOINCREMENT, value_plane TEXT)`)
+              this.createInit(`CREATE TABLE IF NOT EXISTS plane (id INTEGER PRIMARY 
+                  KEY AUTOINCREMENT, value TEXT)`)
             )
             .then(
-              this.createInit(`CREATE TABLE IF NOT EXISTS status (id_status INTEGER PRIMARY 
-                  KEY AUTOINCREMENT, value_status TEXT)`)
+              this.createInit(`CREATE TABLE IF NOT EXISTS status (id INTEGER PRIMARY 
+                  KEY AUTOINCREMENT, value TEXT)`)
             )
             .then(
-              this.createInit(`CREATE TABLE IF NOT EXISTS meteo (id_meteo INTEGER PRIMARY 
-                  KEY AUTOINCREMENT, value_meteo TEXT)`)
+              this.createInit(`CREATE TABLE IF NOT EXISTS meteo (id INTEGER PRIMARY 
+                  KEY AUTOINCREMENT, value TEXT)`)
             )
             .then(
-              this.createInit(`CREATE TABLE IF NOT EXISTS other (id_other INTEGER PRIMARY 
-                  KEY AUTOINCREMENT, value_other TEXT)`)
+              this.createInit(`CREATE TABLE IF NOT EXISTS other (id INTEGER PRIMARY 
+                  KEY AUTOINCREMENT, value TEXT)`)
             )
             .then(
-              this.createInit(`INSERT INTO day (value_day) 
+              this.createInit(`INSERT INTO day (value) 
                 values ('День'), ('Ночь')`)
             )
             .then(
-              this.createInit(`INSERT INTO plane (value_plane) 
+              this.createInit(`INSERT INTO plane (value) 
                 values ('Ан-26'), ('А27М')`)
             )
             .then(
-              this.createInit(`INSERT INTO status (value_status) 
+              this.createInit(`INSERT INTO status (value) 
                 values ('Контрольный'), ('Самостоятельный')`)
             )
             .then(
-              this.createInit(`INSERT INTO meteo (value_meteo) 
+              this.createInit(`INSERT INTO meteo (value) 
                 values ('ПМУ'), ('СМУ')`)
             )
-            .then(this.createInit(`SELECT value_day FROM day`))
+            .then(this.createInit(`SELECT value FROM day`))
             .then(result => console.log('in table day: ', result))
             .then(this.recordFile('status', 'initok'))
             .catch(err => console.log('error: ', err))

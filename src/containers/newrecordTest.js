@@ -8,19 +8,23 @@ const dbThunk = () => {
     const db = new Mydb
     return (dispatch) => {
         db.addTest(`SELECT value_day, id_day FROM day`)
-            .then(res => dispatch({type: 'INIT', days: res}),
-                err => console.log('err: ', err))
+            .then(res => dispatch({type: 'INIT-DAY', days: res}))
+        db.addTest(`SELECT value_plane, id_plane FROM plane`)
+            .then(res => dispatch({type: 'INIT-PLANE', planes: res}))
+            .catch (err => console.log('err: ', err))
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+   // console.log(state)
     return ({
         show: state.newrecord.show,
         data: state.newrecord.data,
         datatxt: state.newrecord.data.toLocaleString(),
         selectedType: state.newrecord.selectedType,
-        typeDay: state.newrecord.typeDay
+        typeDay: state.newrecord.typeDay,
+        planes: state.newrecord.planes,
+        selectedPlane: state.newrecord.selectedPlane
     })
 }
 
@@ -28,7 +32,8 @@ const mapDispatchToProps = (dispatch) => ({
     setDate: (dt) => dispatch({type: 'SET_DATA', data: dt}),
     openDataTrue: () => dispatch({type: 'SHOW_KALENDAR'}),
     init: ()=>dispatch(dbThunk()),
-    setType: (val) => dispatch({type: 'SET_TYPE', selected: val})
+    setType: (val) => dispatch({type: 'SET_TYPE', selected: val}),
+    setPlane: (val) => dispatch({type: 'SET_PLANE', selected: val})
 })
 const ContAddrecord = connect(mapStateToProps, mapDispatchToProps)(Newrecord)
 

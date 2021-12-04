@@ -7,7 +7,9 @@ let init = {
     data: currentDate,
     show: false,
     selectedType: '',
-    typeDay:[]
+    typeDay:[],
+    selectedPlane:'',
+    planes:[]
 }
 
 const addReducer = (state = init, action) => {
@@ -18,12 +20,20 @@ const addReducer = (state = init, action) => {
             //     err => console.log('err: ', err))
             return { ...state, show: true, data: currentDate }
         }
-        case 'INIT': {
+        case 'INIT-DAY': {
             return { ...state, typeDay:action.days }
         }
+        case 'INIT-PLANE': {
+           // console.log('reducer',action.planes)
+            return { ...state, planes:action.planes }
+        }
         case 'SET_TYPE':{
-            console.log('sel:',action.selected)
+            //console.log('sel:',action.selected)
             return{...state, selectedType: action.selected}
+        }
+        case 'SET_PLANE':{
+           // console.log('sel:',action.selected)
+            return{...state, selectedPlane: action.selected}
         }
         case SET_DATA: {
             db.readFile('status')
