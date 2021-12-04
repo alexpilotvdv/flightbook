@@ -7,9 +7,9 @@ import Mydb from "../interface/db";
 const dbThunk = () => {
     const db = new Mydb
     return (dispatch) => {
-        db.addTest(`SELECT value_day, id_day FROM day`)
+        db.addTest(`SELECT value, id FROM day`)
             .then(res => dispatch({type: 'INIT-DAY', days: res}))
-        db.addTest(`SELECT value_plane, id_plane FROM plane`)
+        db.addTest(`SELECT value, id FROM plane`)
             .then(res => dispatch({type: 'INIT-PLANE', planes: res}))
             .catch (err => console.log('err: ', err))
     }

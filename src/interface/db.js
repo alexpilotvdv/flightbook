@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 class Mydb {
   constructor() {
     const sqlinit = "SELECT name FROM sqlite_master WHERE type='table'"
-    this.db = SQLite.openDatabase('testdb5')
+    this.db = SQLite.openDatabase('testdb7')
     //надо сделать так, чтобы проводилась проверка
     //была ли уже инициализация
     this.readFile('status')

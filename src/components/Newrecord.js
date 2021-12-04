@@ -20,7 +20,7 @@ export default class Newrecord extends Component  {
     }
     returnPickerItemArray = () => {
        let arr = this.pickItemArr = this.props.typeDay.map((el)=>{
-     return <Picker.Item label={el.value_day} value={el.id_day} key={el.id_day} />
+     return <Picker.Item label={el.value} value={el.id} key={el.id} />
         })
      return arr
     }
@@ -48,10 +48,10 @@ export default class Newrecord extends Component  {
                 elementsList = {this.props.typeDay} 
                 selected = {this.props.selectedType}
                 setType = {this.props.setType}/>
-                {/* <SelectItems nameList = 'Летательный аппарат'
+                <SelectItems nameList = 'Летательный аппарат'
                 elementsList = {this.props.planes} 
                 selected = {this.props.selectedPlane}
-                setType = {this.props.setPlane}/> */}
+                setType = {this.props.setPlane}/>
             </View>
             
         );
