@@ -52,6 +52,10 @@ export default class Newrecord extends Component  {
                 elementsList = {this.props.planes} 
                 selected = {this.props.selectedPlane}
                 setType = {this.props.setPlane}/>
+                <SelectItems nameList = 'Вид полета'
+                elementsList = {this.props.status} 
+                selected = {this.props.selectedStatus}
+                setType = {this.props.setStatus}/>
             </View>
             
         );
