@@ -9,9 +9,9 @@ import SelectItems from './SelectItems';
 export default class Newrecord extends Component  {
     
     onChange = (event, selectedDate) => {
-        const currentDate = selectedDate || props.data;
+        let currentDate = selectedDate || props.data;
         // setShow(Platform.OS === 'ios');
-        props.setDate(currentDate);
+        this.props.setDate(currentDate);
     }
     componentDidMount = () => {
         this.props.init()
@@ -25,14 +25,15 @@ export default class Newrecord extends Component  {
      return arr
     }
     render(){
-       console.log('props',this.props)
-       console.log(this.pickItemArr)
+      // console.log('props',this.props)
+       //console.log(this.pickItemArr)
         return (
             <View style={styles.container}>
                 <View>
                     <Text> {this.props.datatxt} </Text>
                     <Button onPress={() => this.props.openDataTrue()} title="Выберите дату полета" />
                 </View>
+              
                 {this.props.show && (
                     <DateTimePicker
                         testID="dateTimePicker"
@@ -43,7 +44,7 @@ export default class Newrecord extends Component  {
                         onChange={this.onChange}
                     />
                 )}
-                <Text>ЛА</Text>
+                
                 <SelectItems nameList = 'Время суток'
                 elementsList = {this.props.typeDay} 
                 selected = {this.props.selectedType}
@@ -56,6 +57,17 @@ export default class Newrecord extends Component  {
                 elementsList = {this.props.status} 
                 selected = {this.props.selectedStatus}
                 setType = {this.props.setStatus}/>
+                <SelectItems nameList = 'Метео условия'
+                elementsList = {this.props.meteo} 
+                selected = {this.props.selectedMeteo}
+                setType = {this.props.setMeteo}/>
+                <Button onPress={() => this.props.recordNew()} title="Записать" />
+                {this.props.showAlertRecord && (
+                    <View style={styles.alert}>
+                        <Text>Записать?</Text>
+                        <Button onPress={() => this.props.record()} title="Записать" />
+                    </View>
+                )}
             </View>
             
         );
@@ -69,7 +81,7 @@ export default class Newrecord extends Component  {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 4,
         flexDirection: 'column',
         backgroundColor: '#fff',
         alignItems: 'stretch',
@@ -95,5 +107,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 5,
         backgroundColor: 'gray'
+    },
+    alert:{
+        flex: 8,
+        backgroundColor: 'yellow'
     }
 });

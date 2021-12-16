@@ -11,7 +11,10 @@ let init = {
     selectedPlane:'',
     planes:[],
     status:[],
-    selectedStatus:''
+    selectedStatus:'',
+    meteo:[],
+    selectedMeteo:'',
+    showAlertRecord: false //показать окно предупреждения о записи
 }
 
 const addReducer = (state = init, action) => {
@@ -21,6 +24,12 @@ const addReducer = (state = init, action) => {
             // db.addTest(`SELECT value_day FROM day`).then(res => console.log('res: ', res),
             //     err => console.log('err: ', err))
             return { ...state, show: true, data: currentDate }
+        }
+        case 'RECORD_NEW': {
+            return { ...state, showAlertRecord: true } //показать окно предупреждения перед записью
+        }
+        case 'RECORD': {
+            return { ...state, showAlertRecord: false } //непосредственно записать
         }
         case 'INIT-DAY': {
             return { ...state, typeDay:action.days }
@@ -32,6 +41,10 @@ const addReducer = (state = init, action) => {
         case 'INIT-STATUS': {
             // console.log('reducer',action.planes)
              return { ...state, status:action.status }
+         }
+         case 'INIT-METEO': {
+            // console.log('reducer',action.planes)
+             return { ...state, meteo:action.meteo }
          }
         case 'SET_TYPE':{
             //console.log('sel:',action.selected)
@@ -45,9 +58,12 @@ const addReducer = (state = init, action) => {
             // console.log('sel:',action.selected)
              return{...state, selectedStatus: action.selected}
          }
+         case 'SET_METEO':{
+            // console.log('sel:',action.selected)
+             return{...state, selectedMeteo: action.selected}
+         }
         case SET_DATA: {
-            db.readFile('status')
-                .then(resolve => console.log('rez = ', resolve))
+            console.log('data:',action.data)
             return { ...state, show: false, data: action.data }
         }
         default: {

@@ -13,6 +13,8 @@ const dbThunk = () => {
             .then(res => dispatch({ type: 'INIT-PLANE', planes: res }))
         db.addTest(`SELECT value, id FROM status`)
             .then(res => dispatch({ type: 'INIT-STATUS', status: res }))
+        db.addTest(`SELECT value, id FROM meteo`)
+            .then(res => dispatch({ type: 'INIT-METEO', meteo: res }))
             .catch(err => console.log('err: ', err))
     }
 }
@@ -28,7 +30,10 @@ const mapStateToProps = (state) => {
         planes: state.newrecord.planes,
         selectedPlane: state.newrecord.selectedPlane,
         status: state.newrecord.status,
-        selectedStatus: state.newrecord.selectedStatus
+        selectedStatus: state.newrecord.selectedStatus,
+        meteo: state.newrecord.meteo,
+        selectedMeteo: state.newrecord.selectedMeteo,
+        showAlertRecord: state.newrecord.showAlertRecord
     })
 }
 
@@ -38,7 +43,10 @@ const mapDispatchToProps = (dispatch) => ({
     init: () => dispatch(dbThunk()),
     setType: (val) => dispatch({ type: 'SET_TYPE', selected: val }),
     setPlane: (val) => dispatch({ type: 'SET_PLANE', selected: val }),
-    setStatus: (val) => dispatch({ type: 'SET_STATUS', selected: val })
+    setStatus: (val) => dispatch({ type: 'SET_STATUS', selected: val }),
+    setMeteo: (val) => dispatch({ type: 'SET_METEO', selected: val }),
+    record: ()=>dispatch({type:'RECORD'}),
+    recordNew: () => dispatch({type:'RECORD_NEW'}) //перед записью вывести окно
 })
 const ContAddrecord = connect(mapStateToProps, mapDispatchToProps)(Newrecord)
 
