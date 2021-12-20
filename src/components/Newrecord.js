@@ -1,13 +1,16 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
-import {Picker} from '@react-native-picker/picker'
+import { Picker } from '@react-native-picker/picker'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StoreContext } from '../../statecontext'
 import SelectItems from './SelectItems';
+import { Dimensions } from 'react-native'
+import Alert from './alert'
+import { Ionicons } from '@expo/vector-icons';
 
-export default class Newrecord extends Component  {
-    
+export default class Newrecord extends Component {
+
     onChange = (event, selectedDate) => {
         let currentDate = selectedDate || props.data;
         // setShow(Platform.OS === 'ios');
@@ -16,24 +19,30 @@ export default class Newrecord extends Component  {
     componentDidMount = () => {
         this.props.init()
         this.returnPickerItemArray()
-       // this.props.init()
+        // this.props.init()
     }
     returnPickerItemArray = () => {
-       let arr = this.pickItemArr = this.props.typeDay.map((el)=>{
-     return <Picker.Item label={el.value} value={el.id} key={el.id} />
+        let arr = this.pickItemArr = this.props.typeDay.map((el) => {
+            return <Picker.Item label={el.value} value={el.id} key={el.id} />
         })
-     return arr
+        return arr
     }
-    render(){
-      // console.log('props',this.props)
-       //console.log(this.pickItemArr)
+    render() {
+        // console.log('props',this.props)
+        //console.log(this.pickItemArr)
         return (
             <View style={styles.container}>
-                <View>
+                <View style={styles.calend}>
                     <Text> {this.props.datatxt} </Text>
-                    <Button onPress={() => this.props.openDataTrue()} title="Выберите дату полета" />
+                    <TouchableOpacity
+                        onPress={() => this.props.openDataTrue()}
+                    >
+                        <Ionicons name='calendar-outline' size={70} color='blue' />
+                    </TouchableOpacity>
+
+                   
                 </View>
-              
+
                 {this.props.show && (
                     <DateTimePicker
                         testID="dateTimePicker"
@@ -44,35 +53,32 @@ export default class Newrecord extends Component  {
                         onChange={this.onChange}
                     />
                 )}
-                
-                <SelectItems nameList = 'Время суток'
-                elementsList = {this.props.typeDay} 
-                selected = {this.props.selectedType}
-                setType = {this.props.setType}/>
-                <SelectItems nameList = 'Летательный аппарат'
-                elementsList = {this.props.planes} 
-                selected = {this.props.selectedPlane}
-                setType = {this.props.setPlane}/>
-                <SelectItems nameList = 'Вид полета'
-                elementsList = {this.props.status} 
-                selected = {this.props.selectedStatus}
-                setType = {this.props.setStatus}/>
-                <SelectItems nameList = 'Метео условия'
-                elementsList = {this.props.meteo} 
-                selected = {this.props.selectedMeteo}
-                setType = {this.props.setMeteo}/>
+
+                <SelectItems nameList='Время суток'
+                    elementsList={this.props.typeDay}
+                    selected={this.props.selectedType}
+                    setType={this.props.setType} />
+                <SelectItems nameList='Летательный аппарат'
+                    elementsList={this.props.planes}
+                    selected={this.props.selectedPlane}
+                    setType={this.props.setPlane} />
+                <SelectItems nameList='Вид полета'
+                    elementsList={this.props.status}
+                    selected={this.props.selectedStatus}
+                    setType={this.props.setStatus} />
+                <SelectItems nameList='Метео условия'
+                    elementsList={this.props.meteo}
+                    selected={this.props.selectedMeteo}
+                    setType={this.props.setMeteo} />
                 <Button onPress={() => this.props.recordNew()} title="Записать" />
                 {this.props.showAlertRecord && (
-                    <View style={styles.alert}>
-                        <Text>Записать?</Text>
-                        <Button onPress={() => this.props.record()} title="Записать" />
-                    </View>
+                    <Alert props={this.props} />
                 )}
             </View>
-            
+
         );
     }
-    
+
 
 
 
@@ -80,6 +86,13 @@ export default class Newrecord extends Component  {
 
 
 const styles = StyleSheet.create({
+    calend:{
+flexDirection:'row',
+justifyContent:'space-between',
+alignItems:'center',
+
+
+    },
     container: {
         flex: 4,
         flexDirection: 'column',
@@ -108,8 +121,14 @@ const styles = StyleSheet.create({
         padding: 5,
         backgroundColor: 'gray'
     },
-    alert:{
-        flex: 8,
-        backgroundColor: 'yellow'
+    alert: {
+        backgroundColor: 'yellow',
+        borderWidth: 1,
+        padding: 20,
+        margin: 10,
+        position: 'absolute',
+        top: 200,
+        width: (Dimensions.get('window').width - 20),
+        alignItems: 'center'
     }
 });

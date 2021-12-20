@@ -4,8 +4,8 @@ import { Picker } from '@react-native-picker/picker'
 
 SelectItems = (props) => {
     returnPickerItemArray = () => {
-        let arr = props.elementsList.map((el) => {
-            return <Picker.Item label={el.value} value={el.id} key={el.id} />
+        let arr = props.elementsList.map((el,index) => {
+            return <Picker.Item label={el.value} value={index} key={el.id} />
         })
         return arr
     }
