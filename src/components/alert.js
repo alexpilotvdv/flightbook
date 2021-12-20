@@ -2,34 +2,34 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Dimensions } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
-const Alert = (props) => {
-    //console.log('props ', props)
+const Alert = ({props}) => {
+    console.log('props ', props.datatxt)
     return (
         <View style={styles.alert}>
             <Text>
-                Дата: {props.props.datatxt}
+                Дата: {props.datatxt}
             </Text>
             <Text>
-               Время суток: {props.props.typeDay[props.props.selectedType].value}
+                Время суток: {props.typeDay[props.selectedType].value}
             </Text>
             <Text>
-                Тип ЛА: {props.props.planes[props.props.selectedPlane].value}
+                Тип ЛА: {props.planes[props.selectedPlane].value}
             </Text>
             <Text>
-            Статус: {props.props.status[props.props.selectedStatus].value}
+                Статус: {props.status[props.selectedStatus].value}
             </Text>
             <Text>
-            Метеоусловия: {props.props.meteo[props.props.selectedMeteo].value}
+                Метеоусловия: {props.meteo[props.selectedMeteo].value}
             </Text>
             <TouchableOpacity
                 onPress={() => {
-                    props.props.record()
-                } }
+                    props.record()
+                }}
             >
                 <Ionicons name='close-circle-outline' size={70} color='red' />
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() =>  props.props.record()}
+                onPress={() => props.record()}
             >
                 <Ionicons name='checkmark-outline' size={70} color='green' />
             </TouchableOpacity>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         top: 200,
         width: (Dimensions.get('window').width - 20),
         alignItems: 'center',
-        elevation:4
+        elevation: 4
     }
 });
 

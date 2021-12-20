@@ -72,7 +72,7 @@ export default class Newrecord extends Component {
                     setType={this.props.setMeteo} />
                 <Button onPress={() => this.props.recordNew()} title="Записать" />
                 {this.props.showAlertRecord && (
-                    <Alert props={this.props} />
+                    <Alert props={{... this.props}} />
                 )}
             </View>
 
