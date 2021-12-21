@@ -26,25 +26,18 @@ const addReducer = (state = init, action) => {
             return { ...state, show: true, data: currentDate }
         }
         case 'RECORD_NEW': {
+            console.log('RECORD_NEW')
             return { ...state, showAlertRecord: true } //показать окно предупреждения перед записью
         }
         case 'RECORD': {
             return { ...state, showAlertRecord: false } //непосредственно записать
         }
-        case 'INIT-DAY': {
-            return { ...state, typeDay:action.days }
+        case 'RECORD-CANCEL': {
+            return { ...state, showAlertRecord: false } //непосредственно записать
         }
-        case 'INIT-PLANE': {
-           // console.log('reducer',action.planes)
-            return { ...state, planes:action.planes }
-        }
-        case 'INIT-STATUS': {
-            // console.log('reducer',action.planes)
-             return { ...state, status:action.status }
-         }
-         case 'INIT-METEO': {
-            // console.log('reducer',action.planes)
-             return { ...state, meteo:action.meteo }
+         case 'INIT-ALL': {
+            //console.log('INIT-ALL: ',{ ...state, ...action.elements})
+            return { ...state, ...action.elements }
          }
         case 'SET_TYPE':{
             //console.log('sel:',action.selected)

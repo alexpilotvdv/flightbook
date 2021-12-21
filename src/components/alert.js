@@ -22,9 +22,7 @@ const Alert = ({props}) => {
                 Метеоусловия: {props.meteo[props.selectedMeteo].value}
             </Text>
             <TouchableOpacity
-                onPress={() => {
-                    props.record()
-                }}
+                onPress={() => props.recordCancel()}
             >
                 <Ionicons name='close-circle-outline' size={70} color='red' />
             </TouchableOpacity>

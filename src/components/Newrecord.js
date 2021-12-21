@@ -70,10 +70,17 @@ export default class Newrecord extends Component {
                     elementsList={this.props.meteo}
                     selected={this.props.selectedMeteo}
                     setType={this.props.setMeteo} />
+                    <View style = {styles.nalet}>
+                     <Text>Полетов</Text>
+                     <Text>Налет</Text>
+                    </View>
+                    <View style = {styles.knopkaZap}>
                 <Button onPress={() => this.props.recordNew()} title="Записать" />
+                </View>
                 {this.props.showAlertRecord && (
                     <Alert props={{... this.props}} />
                 )}
+                 
             </View>
 
         );
@@ -92,6 +99,18 @@ justifyContent:'space-between',
 alignItems:'center',
 
 
+    },
+    nalet:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        margin:5
+    },
+    knopkaZap:{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        margin:5
     },
     container: {
         flex: 4,

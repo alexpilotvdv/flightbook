@@ -2,21 +2,52 @@ import React from 'react';
 import Newrecord from '../components/Newrecord';
 import { connect } from "react-redux";
 import Mydb from "../interface/db";
+import store from '../store/index'
 
+const dbNewRecordThunk = () => {
+    return (dispatch) => {
+        let toRecord = {
+            data: 0,
+            selectedType: '',
+            selectedPlane:'',
+            selectedStatus:'',
+            selectedMeteo:'',
+        }
+        const db = new Mydb
+        let state = store.getState()
+        //console.log('store: ', state)
+        //алгоритм: id = state.newrecord.meteo[state.newrecord.selectedMeteo].id
+        toRecord.data = state.newrecord.data.getTime()
+        toRecord.selectedType = state.newrecord.typeDay[state.newrecord.selectedType].id
+        toRecord.selectedPlane = state.newrecord.planes[state.newrecord.selectedPlane].id
+        toRecord.selectedStatus = state.newrecord.status[state.newrecord.selectedStatus].id
+        toRecord.selectedMeteo = state.newrecord.meteo[state.newrecord.selectedMeteo].id
+        console.log('store.data =  ', toRecord)
+        //сдесь будет собираться объект с данными для записи
+        dispatch({type: 'RECORD'})
+    }
+}
 
 const dbThunk = () => {
     const db = new Mydb
     return (dispatch) => {
-        db.addTest(`SELECT value, id FROM day`)
-            .then(res => dispatch({ type: 'INIT-DAY', days: res }))
-        db.addTest(`SELECT value, id FROM plane`)
-            .then(res => dispatch({ type: 'INIT-PLANE', planes: res }))
-        db.addTest(`SELECT value, id FROM status`)
-            .then(res => dispatch({ type: 'INIT-STATUS', status: res }))
-        db.addTest(`SELECT value, id FROM meteo`)
-            .then(res => dispatch({ type: 'INIT-METEO', meteo: res }))
-            .catch(err => console.log('err: ', err))
+            dbInit().then(res => dispatch({type: 'INIT-ALL', elements: res}))
     }
+}
+
+const dbInit = async ()  => {
+    let initD = {
+        typeDay:[],
+        planes:[],
+        status:[],
+        meteo:[],
+    }
+    const db = new Mydb
+    initD.typeDay = await db.addTest(`SELECT value, id FROM day`)
+    initD.planes = await db.addTest(`SELECT value, id FROM plane`)
+    initD.status = await db.addTest(`SELECT value, id FROM status`)
+    initD.meteo = await db.addTest(`SELECT value, id FROM meteo`)
+    return initD
 }
 
 const mapStateToProps = (state) => {
@@ -45,8 +76,9 @@ const mapDispatchToProps = (dispatch) => ({
     setPlane: (val) => dispatch({ type: 'SET_PLANE', selected: val }),
     setStatus: (val) => dispatch({ type: 'SET_STATUS', selected: val }),
     setMeteo: (val) => dispatch({ type: 'SET_METEO', selected: val }),
-    record: ()=>dispatch({type:'RECORD'}),
-    recordNew: () => dispatch({type:'RECORD_NEW'}) //перед записью вывести окно
+    record: ()=>dispatch(dbNewRecordThunk()),
+    recordNew: () => dispatch({type:'RECORD_NEW'}), //перед записью вывести окно
+    recordCancel: () => dispatch({type:'RECORD-CANCEL'})
 })
 const ContAddrecord = connect(mapStateToProps, mapDispatchToProps)(Newrecord)
 
