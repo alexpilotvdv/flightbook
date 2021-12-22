@@ -16,10 +16,10 @@ export default class App extends React.Component {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
-              name="Home"
+              name="Главный экран"
               component={Main}
             />
-            <Stack.Screen name="Newrecords"
+            <Stack.Screen name="Новая запись"
               component={ContAddrecord}
             />
           </Stack.Navigator>

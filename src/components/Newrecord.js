@@ -8,6 +8,8 @@ import SelectItems from './SelectItems';
 import { Dimensions } from 'react-native'
 import Alert from './alert'
 import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons'
+import { Input, Icon } from 'react-native-elements';
 
 export default class Newrecord extends Component {
 
@@ -40,7 +42,7 @@ export default class Newrecord extends Component {
                         <Ionicons name='calendar-outline' size={70} color='blue' />
                     </TouchableOpacity>
 
-                   
+
                 </View>
 
                 {this.props.show && (
@@ -53,7 +55,26 @@ export default class Newrecord extends Component {
                         onChange={this.onChange}
                     />
                 )}
-
+<View style={styles.nalet}>
+                    {/* <Text>Полетов</Text> */}
+                       <Input
+                        placeholder='Полетов' 
+                        containerStyle={styles.input}
+                        keyboardType = 'numeric'
+                        leftIcon={
+                            <FontAwesome5 name="plane-departure" size={23} color="blue" />
+                        }
+                    />
+                    {/* <Text>Налет</Text> */}
+                    <Input
+                     containerStyle={styles.input}
+                        placeholder='Налет' 
+                        keyboardType = 'numeric'
+                        leftIcon={
+                            <Ionicons name="time-outline" size={23} color="blue" />
+                        }
+                    />
+                </View>
                 <SelectItems nameList='Время суток'
                     elementsList={this.props.typeDay}
                     selected={this.props.selectedType}
@@ -70,17 +91,14 @@ export default class Newrecord extends Component {
                     elementsList={this.props.meteo}
                     selected={this.props.selectedMeteo}
                     setType={this.props.setMeteo} />
-                    <View style = {styles.nalet}>
-                     <Text>Полетов</Text>
-                     <Text>Налет</Text>
-                    </View>
-                    <View style = {styles.knopkaZap}>
-                <Button onPress={() => this.props.recordNew()} title="Записать" />
+                
+                <View style={styles.knopkaZap}>
+                    <Button onPress={() => this.props.recordNew()} title="Записать" />
                 </View>
                 {this.props.showAlertRecord && (
-                    <Alert props={{... this.props}} />
+                    <Alert props={{ ... this.props }} />
                 )}
-                 
+
             </View>
 
         );
@@ -93,24 +111,30 @@ export default class Newrecord extends Component {
 
 
 const styles = StyleSheet.create({
-    calend:{
-flexDirection:'row',
-justifyContent:'space-between',
-alignItems:'center',
+    calend: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
 
 
     },
-    nalet:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        margin:5
+    input: {
+        
+        width: 150,
+
+
     },
-    knopkaZap:{
-        flexDirection:'row',
-        justifyContent:'center',
-        alignItems:'center',
-        margin:5
+    nalet: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        margin: 5
+    },
+    knopkaZap: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 5
     },
     container: {
         flex: 4,

@@ -28,7 +28,7 @@ export default function App(props) {
      
      <TouchableOpacity
        onPress={() =>{
- props.navigation.navigate('Newrecords', { name: 'Jane' })
+ props.navigation.navigate('Новая запись', { name: 'Jane' })
 
        }
         
