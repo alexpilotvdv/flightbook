@@ -4,6 +4,8 @@ const SHOW_KALENDAR = 'SHOW_KALENDAR'
 const SET_DATA = 'SET_DATA'
 let currentDate = new Date()
 let init = {
+    colPolInInput: '', //количество полетов в поле ввода
+    naletInput: '',
     data: currentDate,
     show: false,
     selectedType: '',
@@ -29,6 +31,14 @@ const addReducer = (state = init, action) => {
             console.log('RECORD_NEW')
             return { ...state, showAlertRecord: true } //показать окно предупреждения перед записью
         }
+        case 'CHCOLPOL': {
+            return { ...state, colPolInInput: action.value }
+        }
+        case 'CHNAL': {
+            // не забыть потом перевести в минуты
+            return{ ...state, naletInput: action.value}
+        }
+
         case 'RECORD': {
             return { ...state, showAlertRecord: false } //непосредственно записать
         }

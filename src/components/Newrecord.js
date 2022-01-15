@@ -55,24 +55,28 @@ export default class Newrecord extends Component {
                         onChange={this.onChange}
                     />
                 )}
-<View style={styles.nalet}>
+                <View style={styles.nalet}>
                     {/* <Text>Полетов</Text> */}
-                       <Input
-                        placeholder='Полетов' 
+                    <Input
+                        placeholder='Полетов'
                         containerStyle={styles.input}
-                        keyboardType = 'numeric'
+                        keyboardType='numeric'
+                        value={this.props.colPolInInput}
                         leftIcon={
                             <FontAwesome5 name="plane-departure" size={23} color="blue" />
                         }
+                        onChangeText={value => this.props.chColPol(value)}
                     />
                     {/* <Text>Налет</Text> */}
                     <Input
-                     containerStyle={styles.input}
-                        placeholder='Налет' 
-                        keyboardType = 'numeric'
+                        containerStyle={styles.input}
+                        placeholder='Налет'
+                        keyboardType='numeric'
                         leftIcon={
                             <Ionicons name="time-outline" size={23} color="blue" />
                         }
+                        value = {this.props.naletInput}
+                        onChangeText = {value => this.props.chNalet(value)}
                     />
                 </View>
                 <SelectItems nameList='Время суток'
@@ -91,7 +95,7 @@ export default class Newrecord extends Component {
                     elementsList={this.props.meteo}
                     selected={this.props.selectedMeteo}
                     setType={this.props.setMeteo} />
-                
+
                 <View style={styles.knopkaZap}>
                     <Button onPress={() => this.props.recordNew()} title="Записать" />
                 </View>
@@ -119,7 +123,7 @@ const styles = StyleSheet.create({
 
     },
     input: {
-        
+
         width: 150,
 
 

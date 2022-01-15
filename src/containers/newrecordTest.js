@@ -64,7 +64,9 @@ const mapStateToProps = (state) => {
         selectedStatus: state.newrecord.selectedStatus,
         meteo: state.newrecord.meteo,
         selectedMeteo: state.newrecord.selectedMeteo,
-        showAlertRecord: state.newrecord.showAlertRecord
+        showAlertRecord: state.newrecord.showAlertRecord,
+        colPolInInput: state.newrecord.colPolInInput,
+        naletInput: state.newrecord.naletInput
     })
 }
 
@@ -78,7 +80,9 @@ const mapDispatchToProps = (dispatch) => ({
     setMeteo: (val) => dispatch({ type: 'SET_METEO', selected: val }),
     record: ()=>dispatch(dbNewRecordThunk()),
     recordNew: () => dispatch({type:'RECORD_NEW'}), //перед записью вывести окно
-    recordCancel: () => dispatch({type:'RECORD-CANCEL'})
+    recordCancel: () => dispatch({type:'RECORD-CANCEL'}),
+    chColPol: (val) => dispatch({type:'CHCOLPOL', value: val}),
+    chNalet: (val) => dispatch({type:'CHNAL', value: val})
 })
 const ContAddrecord = connect(mapStateToProps, mapDispatchToProps)(Newrecord)
 

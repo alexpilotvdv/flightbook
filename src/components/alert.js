@@ -10,6 +10,9 @@ const Alert = ({props}) => {
                 Дата: {props.datatxt}
             </Text>
             <Text>
+                Полетов: {props.colPolInInput}
+            </Text>
+            <Text>
                 Время суток: {props.typeDay[props.selectedType].value}
             </Text>
             <Text>
