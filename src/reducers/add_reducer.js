@@ -71,6 +71,9 @@ const addReducer = (state = init, action) => {
         }
 
         case 'RECORD': {
+            db.addTest(`SELECT * from records`).then(
+             rez=>console.log('in base:',rez)   
+            )
             return { ...state, showAlertRecord: false } //непосредственно записать
         }
         case 'RECORD-CANCEL': {

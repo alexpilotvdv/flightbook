@@ -12,6 +12,8 @@ const dbNewRecordThunk = () => {
             selectedPlane:'',
             selectedStatus:'',
             selectedMeteo:'',
+            naletM:0,
+            colpol:0
         }
         const db = new Mydb
         let state = store.getState()
@@ -22,9 +24,18 @@ const dbNewRecordThunk = () => {
         toRecord.selectedPlane = state.newrecord.planes[state.newrecord.selectedPlane].id
         toRecord.selectedStatus = state.newrecord.status[state.newrecord.selectedStatus].id
         toRecord.selectedMeteo = state.newrecord.meteo[state.newrecord.selectedMeteo].id
+        toRecord.naletM = state.newrecord.naletMinut
+        toRecord.colpol = state.newrecord.colPolInInput
         console.log('store.data =  ', toRecord)
-        //сдесь будет собираться объект с данными для записи
-        dispatch({type: 'RECORD'})
+        //запишем в базу
+        db.createInit(`INSERT INTO records (data, 
+            day, plane, status, 
+            meteo, other, minuts,colpol) 
+        values (?,?,?,?,?,?,?,?)`,[toRecord.data,toRecord.selectedType,toRecord.selectedPlane,
+        toRecord.selectedStatus,toRecord.selectedMeteo,'',toRecord.naletM,toRecord.colpol]).then(
+            dispatch({type: 'RECORD'})
+        )
+        
     }
 }
 
@@ -66,7 +77,8 @@ const mapStateToProps = (state) => {
         selectedMeteo: state.newrecord.selectedMeteo,
         showAlertRecord: state.newrecord.showAlertRecord,
         colPolInInput: state.newrecord.colPolInInput,
-        naletInput: state.newrecord.naletInput
+        naletInput: state.newrecord.naletInput,
+        naletMinut: state.newrecord.naletMinut
     })
 }
 

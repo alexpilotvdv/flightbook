@@ -13,6 +13,12 @@ const Alert = ({props}) => {
                 Полетов: {props.colPolInInput}
             </Text>
             <Text>
+                Налет: {props.naletInput}
+            </Text>
+            <Text>
+                Налет в минутах: {props.naletMinut}
+            </Text>
+            <Text>
                 Время суток: {props.typeDay[props.selectedType].value}
             </Text>
             <Text>

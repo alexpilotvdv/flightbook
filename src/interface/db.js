@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 class Mydb {
   constructor() {
     const sqlinit = "SELECT name FROM sqlite_master WHERE type='table'"
-    this.db = SQLite.openDatabase('testdb7')
+    this.db = SQLite.openDatabase('testdb8')
     //надо сделать так, чтобы проводилась проверка
     //была ли уже инициализация
     this.readFile('status')
@@ -18,7 +18,7 @@ class Mydb {
           this.createInit(`CREATE TABLE IF NOT EXISTS records 
             (id_records INTEGER PRIMARY KEY AUTOINCREMENT, data INT, 
               day INT, plane INT, status INT, 
-              meteo INT, other INT, minuts INT)`)
+              meteo INT, other INT, minuts INT,colpol INT)`)
             .then(
               this.createInit(`CREATE TABLE IF NOT EXISTS day (id INTEGER PRIMARY 
                   KEY AUTOINCREMENT, value TEXT)`)
