@@ -1,3 +1,6 @@
+
+///Удалить
+
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
@@ -7,12 +10,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 export default function App(props) {
-  
   return (
     <View style={styles.container}>
       <View style={styles.total}>
-        
-      <Total total_name='Общий налет:' total_time = '500 ч. 33 м.'/>
+      <Total total_name='Общий налет:' total_time = {props.totalNalet}/>
       </View>
      
      <View style={styles.list}>

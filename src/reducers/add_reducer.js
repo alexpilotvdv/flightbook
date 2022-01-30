@@ -17,7 +17,9 @@ let init = {
     selectedStatus:'',
     meteo:[],
     selectedMeteo:'',
-    showAlertRecord: false //показать окно предупреждения о записи
+    showAlertRecord: false, //показать окно предупреждения о записи
+    totalNalet:'',
+    totalKolPol:''
 }
 
 const addReducer = (state = init, action) => {
@@ -62,9 +64,16 @@ const addReducer = (state = init, action) => {
                }
            } else {
              //крайний элемент не символ разбить подстроку и посчитать налет
-             let massiv = testStr.split('.')
-             let nalmin = parseInt(massiv[0]) * 60 + parseInt(massiv[1])
-             return {  ...state, naletInput: testStr, naletMinut: nalmin}
+             if(testStr.includes('.')){
+                let massiv = testStr.split('.')
+                let nalmin = parseInt(massiv[0]) * 60 + parseInt(massiv[1])
+                return {  ...state, naletInput: testStr, naletMinut: nalmin}
+             } else {
+                let nalmin = parseInt(testStr) * 60
+                return {  ...state, naletInput: testStr, naletMinut: nalmin}
+             }
+
+           
            }
 
             

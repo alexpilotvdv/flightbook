@@ -3,6 +3,7 @@ import Newrecord from '../components/Newrecord';
 import { connect } from "react-redux";
 import Mydb from "../interface/db";
 import store from '../store/index'
+import Main from '../components/Main'
 
 const dbNewRecordThunk = () => {
     return (dispatch) => {
@@ -123,6 +124,6 @@ const mapDispatchToProps = (dispatch) => ({
     chColPol: (val) => dispatch({type:'CHCOLPOL', value: val}),
     chNalet: (val) => dispatch({type:'CHNAL', value: val})
 })
-const ContAddrecord = connect(mapStateToProps, mapDispatchToProps)(Newrecord)
+const MainScreen = connect(mapStateToProps, mapDispatchToProps)(Main)
 
-export default ContAddrecord
+export default MainScreen

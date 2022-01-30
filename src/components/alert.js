@@ -36,7 +36,10 @@ const Alert = ({props}) => {
                 <Ionicons name='close-circle-outline' size={70} color='red' />
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => props.record()}
+                onPress={() => {
+                    props.record()
+                   // props.navigation.navigate('Главный экран')
+                }}
             >
                 <Ionicons name='checkmark-outline' size={70} color='green' />
             </TouchableOpacity>
