@@ -19,7 +19,8 @@ let init = {
     selectedMeteo:'',
     showAlertRecord: false, //показать окно предупреждения о записи
     totalNalet:'',
-    totalKolPol:''
+    totalKolPol:'',
+    mainscreenItog:[]
 }
 
 const addReducer = (state = init, action) => {
