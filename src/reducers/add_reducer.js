@@ -81,9 +81,6 @@ const addReducer = (state = init, action) => {
         }
 
         case 'RECORD': {
-            db.addTest(`SELECT * from records`).then(
-             rez=>console.log('in base:',rez)   
-            )
             return { ...state, showAlertRecord: false } //непосредственно записать
         }
         case 'RECORD-CANCEL': {
@@ -91,7 +88,7 @@ const addReducer = (state = init, action) => {
         }
          case 'INIT-ALL': {
             //console.log('INIT-ALL: ',{ ...state, ...action.elements})
-            return { ...state, ...action.elements }
+            return { ...state, ...action.elements, showAlertRecord: false }
          }
         case 'SET_TYPE':{
             //console.log('sel:',action.selected)
@@ -110,7 +107,7 @@ const addReducer = (state = init, action) => {
              return{...state, selectedMeteo: action.selected}
          }
         case SET_DATA: {
-            console.log('data:',action.data)
+           // console.log('data:',action.data)
             return { ...state, show: false, data: action.data }
         }
         default: {

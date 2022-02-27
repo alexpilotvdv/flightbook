@@ -1,70 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList,SafeAreaView } from 'react-native';
 import Total from './Total';
-const data=[
-    {
-        id:'1',
-        total_name:'Ан-26:',
-        total_time:'500 ч. 33 м.'
-    },
-    {
-        id:'2',
-        total_name:'L-410:',
-        total_time:'500 ч. 33 м.'
-    },
-    {
-        id:'3',
-        total_name:'Ан-26:',
-        total_time:'500 ч. 33 м.'
-    },
-    {
-        id:'4',
-        total_name:'Ан-26:',
-        total_time:'500 ч. 33 м.'
-    },
-    {
-        id:'5',
-        total_name:'Ан-26:',
-        total_time:'500 ч. 33 м.'
-    },
-    {
-        id:'6',
-        total_name:'Ан-26:',
-        total_time:'500 ч. 33 м.'
-    },
-    {
-        id:'7',
-        total_name:'Ан-26:',
-        total_time:'500 ч. 33 м.'
-    },
-    {
-        id:'8',
-        total_name:'Ан-26:',
-        total_time:'500 ч. 33 м.'
-    },
-    {
-        id:'9',
-        total_name:'Ан-26:',
-        total_time:'500 ч. 33 м.'
-    },
-    {
-        id:'10',
-        total_name:'Ан-26:',
-        total_time:'500 ч. 33 м.'
-    }
-]
+
 const ListTotal = (props)=>{
+    //console.log("itogi",props)
+    const retStrTime = (minut) =>{
+        let totalH = parseInt(minut/60)
+        let totalM = minut % 60
+        let strnalet = totalH + ' ч, ' + totalM + ' м'
+        return strnalet
+    }
     const renderItem=({item})=>{
+      
         return(
-            
-            <Total total_name={item.total_name} total_time = {item.total_time}/>
-            
+            <Total total_name={item.value} total_time = {retStrTime(item['SUM (minuts)'])}/>
         )
     }
     return (
         
        <FlatList
-        data={data}
+        data={props.par}
         renderItem={renderItem}
         keyExtractor={item => item.id}
     

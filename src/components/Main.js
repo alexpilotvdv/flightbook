@@ -22,7 +22,7 @@ export default class Main extends Component {
               fontStyle:'italic',
               fontWeight:'bold',
               fontSize:20}}>Налет по типам:</Text>
-             <ListTotal />
+             <ListTotal par = {this.props.itogi}/>
              </View>
              <View style={styles.knopki}>
              <Ionicons name='settings' size={65} color='#AAFFFF' />

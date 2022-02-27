@@ -2,41 +2,48 @@ import React from 'react';
 import Newrecord from '../components/Newrecord';
 import { connect } from "react-redux";
 import Mydb from "../interface/db";
-import store from '../store/index'
+//import store from '../store/index'
+import newzap from './recordzapis';
+
 
 const dbNewRecordThunk = () => {
     return (dispatch) => {
-        let toRecord = {
-            data: 0,
-            selectedType: '',
-            selectedPlane:'',
-            selectedStatus:'',
-            selectedMeteo:'',
-            naletM:0,
-            colpol:0
-        }
-        const db = new Mydb
-        let state = store.getState()
-        //console.log('store: ', state)
-        //алгоритм: id = state.newrecord.meteo[state.newrecord.selectedMeteo].id
-        toRecord.data = state.newrecord.data.getTime()
-        toRecord.selectedType = state.newrecord.typeDay[state.newrecord.selectedType].id
-        toRecord.selectedPlane = state.newrecord.planes[state.newrecord.selectedPlane].id
-        toRecord.selectedStatus = state.newrecord.status[state.newrecord.selectedStatus].id
-        toRecord.selectedMeteo = state.newrecord.meteo[state.newrecord.selectedMeteo].id
-        toRecord.naletM = state.newrecord.naletMinut
-        toRecord.colpol = parseInt(state.newrecord.colPolInInput) 
-        console.log('store.data =  ', toRecord)
-        //запишем в базу
-        db.createInit(`INSERT INTO records (data, 
-            day, plane, status, 
-            meteo, other, minuts,colpol) 
-        values (?,?,?,?,?,?,?,?)`,[toRecord.data,toRecord.selectedType,toRecord.selectedPlane,
-        toRecord.selectedStatus,toRecord.selectedMeteo,'',toRecord.naletM,toRecord.colpol]).then(
-            dispatch({type: 'RECORD'})
-        )
-        
+        newzap().then(res => dispatch({type: 'INIT-ALL', elements: res}))
     }
+    
+    // return (dispatch) => {
+    //     let toRecord = {
+    //         data: 0,
+    //         selectedType: '',
+    //         selectedPlane:'',
+    //         selectedStatus:'',
+    //         selectedMeteo:'',
+    //         naletM:0,
+    //         colpol:0
+    //     }
+    //     const db = new Mydb
+    //     let state = store.getState()
+    //     //console.log('store: ', state)
+    //     //алгоритм: id = state.newrecord.meteo[state.newrecord.selectedMeteo].id
+    //     toRecord.data = state.newrecord.data.getTime()
+    //     toRecord.selectedType = state.newrecord.typeDay[state.newrecord.selectedType].id
+    //     toRecord.selectedPlane = state.newrecord.planes[state.newrecord.selectedPlane].id
+    //     toRecord.selectedStatus = state.newrecord.status[state.newrecord.selectedStatus].id
+    //     toRecord.selectedMeteo = state.newrecord.meteo[state.newrecord.selectedMeteo].id
+    //     toRecord.naletM = state.newrecord.naletMinut
+    //     toRecord.colpol = parseInt(state.newrecord.colPolInInput) 
+    //     //console.log('store.data =  ', toRecord)
+    //     //запишем в базу
+    //     db.createInit(`INSERT INTO records (data, 
+    //         day, plane, status, 
+    //         meteo, other, minuts,colpol) 
+    //     values (?,?,?,?,?,?,?,?)`,[toRecord.data,toRecord.selectedType,toRecord.selectedPlane,
+    //     toRecord.selectedStatus,toRecord.selectedMeteo,'',toRecord.naletM,toRecord.colpol]).then(
+    //        dispatch({type: 'RECORD'})
+          
+    //     )
+        
+    // }
 }
 
 const dbThunk = () => {
@@ -73,7 +80,7 @@ const totalNalet = async() => {
   let totalH = parseInt(t/60)
   let totalM = t % 60
   let rez= '' + totalH + ' часов ' + totalM + ' минут'
-  console.log('>>>>>>>: ',rez)
+ // console.log('>>>>>>>: ',rez)
   return rez
 }
 
