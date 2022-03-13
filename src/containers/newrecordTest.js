@@ -69,7 +69,7 @@ const dbInit = async ()  => {
     initD.meteo = await db.addTest(`SELECT value, id FROM meteo`)
     initD.totalNalet = await totalNalet()
     initD.totalKolPol = await totalPoletov()
-  //  console.log('init: ',initD)
+  console.log('init: ',initD)
     return initD
 }
 

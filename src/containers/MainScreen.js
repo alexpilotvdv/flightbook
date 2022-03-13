@@ -1,14 +1,15 @@
 import React from 'react';
 import Newrecord from '../components/Newrecord';
 import { connect } from "react-redux";
-import Mydb from "../interface/db";
-import store from '../store/index'
+//import Mydb from "../interface/db";
+//import store from '../store/index'
 import Main from '../components/Main'
 import dbInit from './initf'
 
 const dbThunk = () => {
    // const db = new Mydb
     return (dispatch) => {
+        console.log('2')
             dbInit().then(res => dispatch({type: 'INIT-ALL', elements: res}))
     }
 }

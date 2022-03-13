@@ -1,5 +1,6 @@
-import Mydb from "../interface/db"
-const db = new Mydb
+console.log('start reducer')
+//import Mydb from "../interface/db"
+//const db = new Mydb
 const SHOW_KALENDAR = 'SHOW_KALENDAR'
 const SET_DATA = 'SET_DATA'
 let currentDate = new Date()
@@ -87,7 +88,7 @@ const addReducer = (state = init, action) => {
             return { ...state, showAlertRecord: false } //непосредственно записать
         }
          case 'INIT-ALL': {
-            //console.log('INIT-ALL: ',{ ...state, ...action.elements})
+           // console.log('INIT-ALL: ',state)
             return { ...state, ...action.elements, showAlertRecord: false }
          }
         case 'SET_TYPE':{

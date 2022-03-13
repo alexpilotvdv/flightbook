@@ -4,15 +4,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class Mydb {
   constructor() {
+    console.log('4')
     const sqlinit = "SELECT name FROM sqlite_master WHERE type='table'"
-    this.db = SQLite.openDatabase('testdb8')
+    this.db = SQLite.openDatabase('testdb20')
     //надо сделать так, чтобы проводилась проверка
     //была ли уже инициализация
     this.readFile('status')
       .then(res => {
-        this.status = res
-        console.log('status:', this.status)
-        if (this.status !== 'initok') {
+        Mydb.status = res
+        console.log('status from db.js:', Mydb.status)
+        if (Mydb.status !== 'initok') {
           //сделать инициализацию базы
           console.log('init')
           this.createInit(`CREATE TABLE IF NOT EXISTS records 
@@ -40,25 +41,9 @@ class Mydb {
                   KEY AUTOINCREMENT, value TEXT)`)
             )
             .then(
-              this.createInit(`INSERT INTO day (value) 
-                values ('День'), ('Ночь')`)
+              this.insertNachDann()
             )
-            .then(
-              this.createInit(`INSERT INTO plane (value) 
-                values ('Ан-26'), ('А27М')`)
-            )
-            .then(
-              this.createInit(`INSERT INTO status (value) 
-                values ('Контрольный'), ('Самостоятельный')`)
-            )
-            .then(
-              this.createInit(`INSERT INTO meteo (value) 
-                values ('ПМУ'), ('СМУ')`)
-            )
-            .then(this.createInit(`SELECT value FROM day`))
-            .then(result => console.log('in table day: ', result))
-            .then(this.recordFile('status', 'initok'))
-            .catch(err => console.log('error: ', err))
+            
         }
       }
       )
@@ -80,6 +65,25 @@ class Mydb {
       })
     })
   }
+
+  insertNachDann = async () => {
+    //return est li zap
+    let rez = await this.addTest('SELECT count(*) FROM day')
+    console.log('count(*)    ',rez[0]['count(*)'])
+    if (rez[0]['count(*)']===0) {
+      await this.createInit(`INSERT INTO day (value) 
+      values ('День'), ('Ночь')`)
+      await this.createInit(`INSERT INTO plane (value) 
+                values ('Ан-26'), ('А27М')`)
+      await this.createInit(`INSERT INTO status (value) 
+                values ('Контрольный'), ('Самостоятельный')`)
+      await  this.createInit(`INSERT INTO meteo (value) 
+      values ('ПМУ'), ('СМУ')`)
+      await this.recordFile('status', 'initok')
+    }
+  }
+ 
+
   //тест записи файла
   recordFile = async (key, fileContents) => {
 

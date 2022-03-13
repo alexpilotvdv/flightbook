@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default class Main extends Component {
     componentDidMount = () => {
+      console.log('1')
         this.props.init()
         
     }

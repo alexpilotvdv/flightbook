@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 
 export default class App extends React.Component {
   render() {
-
+console.log('app.js')
     return (
       <Provider store={store}>
         <NavigationContainer>
