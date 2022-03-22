@@ -5,6 +5,7 @@ import MainScreen from './src/containers/MainScreen'
 import ContAddrecord from './src/containers/newrecordTest'
 import { Provider } from 'react-redux';
 import store from './src/store/index'
+import Nastr from './src/components/Nastr';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,9 @@ console.log('app.js')
             />
             <Stack.Screen name='Новая запись'
               component={ContAddrecord}
+            />
+            <Stack.Screen name='Настройки'
+              component={Nastr}
             />
           </Stack.Navigator>
         </NavigationContainer>

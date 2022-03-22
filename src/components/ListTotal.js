@@ -22,7 +22,7 @@ const ListTotal = (props)=>{
         data={props.par}
         renderItem={renderItem}
         keyExtractor={item => item.id}
-    
+        
       />
         
      

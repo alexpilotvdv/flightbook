@@ -26,7 +26,13 @@ export default class Main extends Component {
              <ListTotal par = {this.props.itogi}/>
              </View>
              <View style={styles.knopki}>
+             <TouchableOpacity
+             onPress={()=>{
+              this.props.navigation.navigate('Настройки')
+             }}>
              <Ionicons name='settings' size={65} color='#AAFFFF' />
+             </TouchableOpacity>
+            
              <Ionicons name='list' size={70} color='#AAFFFF' />
              
              <TouchableOpacity
