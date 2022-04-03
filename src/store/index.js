@@ -6,7 +6,7 @@ import nastrreducer from '../reducers/nastrreducer'
 const combred = combineReducers(
     {
         newrecord:addReducer,
-        nastrreducer:nastrreducer
+        nastr:nastrreducer
     }
 )
 

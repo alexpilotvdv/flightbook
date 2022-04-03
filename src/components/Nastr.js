@@ -1,25 +1,49 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-const Nastr = () => {
+const Nastr = (props) => {
   return (
     <View>
-      <TouchableOpacity onPress={() => console.log("meteo")}>
+      <TouchableOpacity onPress={() => {
+        props.navigation.push(
+          'Редактирование',{
+            table:'meteo'
+          }
+        )
+      }}>
         <View style={styles.container}>
           <Text>Метеоусловия</Text>
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => console.log("meteo")}>
+      <TouchableOpacity onPress={() => {
+        props.navigation.push(
+          'Редактирование',{
+            table:'plane'
+          }
+        )
+      }}>
         <View style={styles.container}>
           <Text>Летательные аппараты</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => console.log("meteo")}>
+      <TouchableOpacity onPress={() => {
+        props.navigation.push(
+          'Редактирование',{
+            table:'day'
+          }
+        )
+      }}>
         <View style={styles.container}>
           <Text>Виды полетов</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => console.log("meteo")}>
+      <TouchableOpacity onPress={() => {
+        props.navigation.push(
+          'Редактирование',{
+            table:'status'
+          }
+        )
+      }}>
         <View style={styles.container}>
           <Text>Выполняемые функции</Text>
         </View>

@@ -1,33 +1,28 @@
-// import React from 'react';
-// import Newrecord from '../components/Newrecord';
-// import { connect } from "react-redux";
+import React from 'react';
+import Editbdscreen from '../components/nastr/Editbdscreen'
+import { connect } from "react-redux";
 // //import Mydb from "../interface/db";
 // //import store from '../store/index'
 // // import Main from '../components/Main'
-// // import dbInit from './initf'
+import initDataNastr from './initfnastr'
 
-// const dbThunk = () => {
-//    // const db = new Mydb
-//     return (dispatch) => {
-//         console.log('2')
-//             dbInit().then(res => dispatch({type: 'INIT-ALL', elements: res}))
-//     }
-// }
+const dbThunk = (table) => {
+   // const db = new Mydb
+    return (dispatch) => {
+        initDataNastr(table).then(res => dispatch({type:'ISINIT', value:res}))
+    }
+}
 
 
-// const mapStateToProps =  (state) => {
-//     // console.log(state)
-//     return ({
-//         mainscreenItog: state.newrecord.mainscreenItog,
-//         totalNalet: state.newrecord.totalNalet,
-//         totalKolPol: state.newrecord.totalKolPol,
-//         itogi: state.newrecord.itogi
-//     })
-// }
+const mapStateToProps =  (state) => {
+   // console.log('container state:',state)
+    return ({
+        elements:state.nastr.elements  
+    })
+}
 
-// const mapDispatchToProps = (dispatch) => ({
-//     init: () => dispatch(dbThunk())
-// })
-// const MainScreen = connect(mapStateToProps, mapDispatchToProps)(Main)
-
-// export default MainScreen
+const mapDispatchToProps = (dispatch) => ({
+   init: (table) => dispatch(dbThunk(table))
+})
+const NastrEdit = connect(mapStateToProps, mapDispatchToProps)(Editbdscreen)
+export default NastrEdit

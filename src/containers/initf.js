@@ -1,5 +1,8 @@
 
 import Mydb from "../interface/db";
+
+
+
 //необходима проверка. если первый запуск программы, то не инициализировать
 const dbInit = async ()  => {
   console.log('3')

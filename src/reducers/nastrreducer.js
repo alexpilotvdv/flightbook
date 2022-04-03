@@ -1,14 +1,15 @@
 //здесь будет обслуживаться все, что связано с настрйками
 let init = {
-  elements:[{nameel:'',id:'',canDelete:true}],
+  elements:[{id:'',value:'',canDelete:true}],
   showOkno:false,
 }
 
 const nastrreducer = (state = init, action) => {
     
     switch (action.type) {
-        case 'SHOW_KALENDAR': {
-            return { ...state }
+        case 'ISINIT': {
+            console.log('reducer ',action.value)
+            return { ...state, elements:action.value }
         }
       
         default: {
