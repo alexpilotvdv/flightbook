@@ -17,12 +17,18 @@ const dbThunk = (table) => {
 const mapStateToProps =  (state) => {
    // console.log('container state:',state)
     return ({
-        elements:state.nastr.elements  
+        elements:state.nastr.elements,
+        showOkno:state.nastr.showOkno,
+        dataForEdit:state.nastr.dataForEdit,
+        idForEdit:state.nastr.idForEdit  
     })
 }
 
 const mapDispatchToProps = (dispatch) => ({
-   init: (table) => dispatch(dbThunk(table))
+   init: (table) => dispatch(dbThunk(table)),
+   showedit: (id,textToEdit) => dispatch({type:'SHOWEDIT',id:id,text:textToEdit}),
+   closefn: ()=>dispatch({type:'CLOSEEDIT'}),
+   chEdit: (val)=>dispatch({type:'CHEDIT',val:val})
 })
 const NastrEdit = connect(mapStateToProps, mapDispatchToProps)(Editbdscreen)
 export default NastrEdit

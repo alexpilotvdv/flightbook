@@ -1,24 +1,37 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList,SafeAreaView } from 'react-native';
-
+import { StyleSheet, Text, View, FlatList,TouchableHighlight } from 'react-native';
+import ElementForList from './ElementForList';
+import AlertEdit from './alertedit'
 
 const ListElement = (props)=>{
-    //console.log("itogi",props)
+    console.log("itogi",props)
 
     const renderItem=({item})=>{
-      
+        console.log("itogi",props)
         return(
-            <Text> {item.value} </Text>
+            <TouchableHighlight
+            onLongPress = {()=>props.fn(item.id,item.value)}
+               >
+            <ElementForList name = {item.value} delete = {item.canDelete} /> 
+            </TouchableHighlight> 
         )
     }
     return (
-        
-       <FlatList
+        <View>
+ <FlatList
         data={props.elements}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         
       />
+
+{props.showOkno && (
+ <AlertEdit param={{...props}} />
+                )}
+        </View>
+      
+
+      
         
      
     
