@@ -4,20 +4,20 @@ import { Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Input, Icon } from 'react-native-elements';
 import { FontAwesome5 } from '@expo/vector-icons'
-const Alert = (props) => {
+const Alertadd = (props) => {
   //console.log("props ", props);
   return (
     <View style={styles.alert}>
       <Input
         containerStyle={styles.input}
-        value={props.param.dataForEdit}
+        value={props.param.dataForAdd}
         rightIcon = {
             <FontAwesome5 name="edit" size={23} color="green" />
         } 
-        onChangeText={(value) => props.param.chEdit(value)}
+        onChangeText={(value) => props.param.chAdd(value)}
       />
 
-      <Text>{props.param.dataForEdit}</Text>
+      <Text>{props.param.dataForAdd}</Text>
 
       <TouchableOpacity
         onPress={() => {
@@ -28,7 +28,7 @@ const Alert = (props) => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          // props.navigation.navigate('Главный экран')
+          // функция записи в базу
         }}
       >
         <Ionicons name="checkmark-outline" size={70} color="green" />
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
 }
 });
 
-export default Alert;
+export default Alertadd;

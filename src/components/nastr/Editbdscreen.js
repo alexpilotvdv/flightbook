@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import ListElement from "./ListElementNastr";
+import { Ionicons } from "@expo/vector-icons";
+import Alertadd from "./alertadd";
 
 export default class EditScreen extends Component {
   componentDidMount = () => {
     // this.table = this.props.route.params.table
-    // console.log('pr ',this.props)
+    console.log('pr ',this.props)
     //инициализируем
     this.props.init(this.props.route.params.table);
   };
@@ -21,6 +23,17 @@ export default class EditScreen extends Component {
           closefn={this.props.closefn}
           chEdit={this.props.chEdit}
         />
+    {this.props.showOknoAdd && <Alertadd param={{ ...this.props }} />}
+        <View style={styles.add}>
+          <TouchableOpacity
+            onPress={() => {
+              console.log('table: ',this.props.route.params.table)
+              this.props.showAdd();
+            }}
+          >
+            <Ionicons name="add-circle-outline" size={65} color="#000080" />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -34,6 +47,9 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     justifyContent: "flex-start",
     marginTop: 50,
+  },
+  add: {
+    alignItems: "center",
   },
   total: {
     flex: 1,

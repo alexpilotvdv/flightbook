@@ -3,8 +3,9 @@ let init = {
   elements:[{id:'',value:'',canDelete:true}],
   showOkno:false, //показать/скрыть окно с редактированием
   dataForEdit:'',
-  idForEdit:''
-
+  idForEdit:'',
+  showOknoAdd:false, //показать окно добавления
+  dataForAdd:'' //данные для добавления
 }
 
 const nastrreducer = (state = init, action) => {
@@ -20,12 +21,17 @@ const nastrreducer = (state = init, action) => {
             idForEdit:action.id }
         }
         case 'CLOSEEDIT': {
-            return { ...state, showOkno:false }
+            return { ...state, showOkno:false, showOknoAdd:false }
+        }
+        case 'SHOWADD': {
+            return { ...state, showOknoAdd:true }
         }
         case 'CHEDIT': {
             return { ...state, dataForEdit:action.val}
         }
-      
+        case 'CHEADD': {
+            return { ...state, dataForAdd:action.val} 
+        }
         default: {
             return state
         }

@@ -19,7 +19,9 @@ const mapStateToProps =  (state) => {
     return ({
         elements:state.nastr.elements,
         showOkno:state.nastr.showOkno,
+        showOknoAdd:state.nastr.showOknoAdd,
         dataForEdit:state.nastr.dataForEdit,
+        dataForAdd:state.nastr.dataForAdd,
         idForEdit:state.nastr.idForEdit  
     })
 }
@@ -28,7 +30,9 @@ const mapDispatchToProps = (dispatch) => ({
    init: (table) => dispatch(dbThunk(table)),
    showedit: (id,textToEdit) => dispatch({type:'SHOWEDIT',id:id,text:textToEdit}),
    closefn: ()=>dispatch({type:'CLOSEEDIT'}),
-   chEdit: (val)=>dispatch({type:'CHEDIT',val:val})
+   chEdit: (val)=>dispatch({type:'CHEDIT',val:val}),
+   chAdd: (val)=>dispatch({type:'CHEADD',val:val}),
+   showAdd: ()=>dispatch({type:'SHOWADD'})
 })
 const NastrEdit = connect(mapStateToProps, mapDispatchToProps)(Editbdscreen)
 export default NastrEdit
