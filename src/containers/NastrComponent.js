@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 // //import store from '../store/index'
 // // import Main from '../components/Main'
 import initDataNastr from './initfnastr'
+import addtobase from './addtobase'
+import delfrombase from './deletefrombase'
 
 const dbThunk = (table) => {
    // const db = new Mydb
@@ -12,7 +14,21 @@ const dbThunk = (table) => {
         initDataNastr(table).then(res => dispatch({type:'ISINIT', value:res}))
     }
 }
+const delThunk = (table,id) => {
+    return (dispatch)=> {
+       delfrombase(table,id)
+       .then(res => initDataNastr(table))
+       .then(res => dispatch({type:'ISINIT', value:res}))
+    }
+}
+const addThunk = (table) => {
+return (dispatch) => {
+    addtobase(table)
+    .then(res => initDataNastr(table))
+    .then(res => dispatch({type:'ISINIT', value:res}))
+}
 
+ }
 
 const mapStateToProps =  (state) => {
    // console.log('container state:',state)
@@ -32,7 +48,9 @@ const mapDispatchToProps = (dispatch) => ({
    closefn: ()=>dispatch({type:'CLOSEEDIT'}),
    chEdit: (val)=>dispatch({type:'CHEDIT',val:val}),
    chAdd: (val)=>dispatch({type:'CHEADD',val:val}),
-   showAdd: ()=>dispatch({type:'SHOWADD'})
+   showAdd: ()=>dispatch({type:'SHOWADD'}),
+   addNewToBase: (table) => dispatch(addThunk(table)),
+   delFromBaseNastr: (table,id) => dispatch(delThunk(table,id))
 })
 const NastrEdit = connect(mapStateToProps, mapDispatchToProps)(Editbdscreen)
 export default NastrEdit

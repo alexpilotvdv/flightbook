@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Input, Icon } from 'react-native-elements';
 import { FontAwesome5 } from '@expo/vector-icons'
 const Alertadd = (props) => {
-  //console.log("props ", props);
+ // console.log('table: ',props.param.route.params.table)
   return (
     <View style={styles.alert}>
       <Input
@@ -29,6 +29,7 @@ const Alertadd = (props) => {
       <TouchableOpacity
         onPress={() => {
           // функция записи в базу
+          props.param.addNewToBase(props.param.route.params.table)
         }}
       >
         <Ionicons name="checkmark-outline" size={70} color="green" />

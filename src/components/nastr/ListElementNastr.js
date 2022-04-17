@@ -14,10 +14,16 @@ const ListElement = (props) => {
   //console.log("itogi", props);
 
   const renderItem = ({ item }) => {
-    //console.log("itogi",props)
+  //  console.log("itogi ",props)
     return (
       <TouchableHighlight onLongPress={() => props.fn(item.id, item.value)}>
-        <ElementForList name={item.value} delete={item.canDelete} />
+        <ElementForList 
+        name = {item.value} 
+        delete = {item.canDelete} 
+        id = {item.id}  
+        delFromBaseNastr = {props.delFromBaseNastr} 
+        table = {props.table}
+        />
       </TouchableHighlight>
     );
   };

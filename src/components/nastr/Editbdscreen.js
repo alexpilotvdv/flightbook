@@ -7,7 +7,7 @@ import Alertadd from "./alertadd";
 export default class EditScreen extends Component {
   componentDidMount = () => {
     // this.table = this.props.route.params.table
-    console.log('pr ',this.props)
+   //S console.log('pr ',this.props)
     //инициализируем
     this.props.init(this.props.route.params.table);
   };
@@ -21,13 +21,15 @@ export default class EditScreen extends Component {
           dataForEdit={this.props.dataForEdit}
           idForEdit={this.props.idForEdit}
           closefn={this.props.closefn}
-          chEdit={this.props.chEdit}
+          chEdit={this.props.chEdit} 
+          table={this.props.route.params.table} 
+          delFromBaseNastr={this.props.delFromBaseNastr}
         />
     {this.props.showOknoAdd && <Alertadd param={{ ...this.props }} />}
         <View style={styles.add}>
           <TouchableOpacity
             onPress={() => {
-              console.log('table: ',this.props.route.params.table)
+              //console.log('table: ',this.props.route.params.table)
               this.props.showAdd();
             }}
           >

@@ -13,7 +13,13 @@ const nastrreducer = (state = init, action) => {
     switch (action.type) {
         case 'ISINIT': {
           //  console.log('reducer ',action.value)
-            return { ...state, elements:action.value }
+            return { ...state, 
+                elements:action.value, 
+                showOkno:false, 
+                showOknoAdd:false,
+                dataForEdit:'',
+                dataForAdd:'', 
+                  }
         }
         case 'SHOWEDIT': {
            // console.log('show ')
